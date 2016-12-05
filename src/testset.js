@@ -3,32 +3,50 @@
 
     root.testset = function() {
         var currenttestset = [];
+        var subpowerfunc = (opcode) => { return 1; };
+        var power = 100;
+        var testname = '';
+
         var currenttestptr = -1;
         var offer = true;
 
-        this.refresh = function() {
-            currenttestset = [{ i : '01', o : '01' }, { i : '02', o : '01'}, { i : '03', o : '02'}, { i : '04', o : '03'}, { i : '05', o : '05'}, { i : '06', o : '08'}, { i : '07', o : '0d'} ];
+        this.refresh = function(name) {
+            testname = name;
+            currenttestset = root.level[name].set;
+            subpowerfunc = root.level[name].func;
+            power = root.level[name].power;
+
             currenttestptr = 0;
             offer = true;
         };
 
+        this.reset = function() {
+            currenttestptr = 0;
+            offer = true;
+        }
+
         this.fullhtmltable = function(dom) {
-            var inputstr = '<tr><td><b>standard input:</b></td>';
-            var outputstr = '<tr><td><b>standard output:</b></td>';
-            var userstr = '<tr><td><b>your answer:</b></td>'
+            var inputstr = '<tr><td><b>I</b></td><td><b>O</b></td><td><b>A</b></td></tr>';
             for(var i = 0; i < currenttestset.length; i++) {
-                inputstr = inputstr + '<td>' + currenttestset[i].i + '</td>';
-                outputstr = outputstr + '<td>' + currenttestset[i].o + '</td>';
-                userstr = userstr + '<td></td>';
+                inputstr = inputstr + '<tr><td>' + currenttestset[i].i + '</td><td>' + currenttestset[i].o + '</td><td></td></tr>';
             };
 
-            dom.innerHTML = inputstr + '</tr>' + outputstr + '</tr>' + userstr + '</tr>';
+            dom.innerHTML = inputstr;
+        };
+
+        this.updatepowerstate = function(dom, cpuinstance) {
+            var p = Math.floor(cpuinstance.currentpower / cpuinstance.maxpower * 100.0) + '%';
+            dom.style.width = p;
+            dom.innerHTML = p;
         };
 
         this.setcurrenttestpair = function(cpuinstance) {
             if(currenttestptr == -1 || currenttestptr >= currenttestset.length) { return false; };
             cpuinstance.setinput(currenttestset[currenttestptr].i);
             cpuinstance.settruthoutput(currenttestset[currenttestptr].o);
+            cpuinstance.setpower(power);
+            cpuinstance.subpowermap(subpowerfunc);
+
             currenttestptr = currenttestptr + 1;
             return true;
         };
@@ -38,9 +56,11 @@
             if(output == '') { output = 'null'; };
             var judge = cpuinstance.judge();
             if (judge == false) { offer = false; };
-            dom.children[0].children[2].children[currenttestptr].innerHTML = '<span style="color:'+ (judge ? 'black' : 'red') +'">' + output + '</span>';
+            dom.children[0].children[currenttestptr].children[2].innerHTML = '<span style="color:'+ (judge ? 'black' : 'red') +'">' + output + '</span>';
         };
 
         this.isoffer = function() { return offer; };
+
+        this.gettestname = function() { return testname; };
     };
 })(this);

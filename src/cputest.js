@@ -16,7 +16,6 @@
     };
 
     cpu.prototype.setoutputimmediate = function(immediatecode, size) {
-        console.log(immediatecode);
         outputvalue = mico.transfimmediateto16(immediatecode);
     };
 
@@ -40,6 +39,15 @@
             if(truthoutputvalue[i] != outputvalue[i]) { return false; };
         };
         return true;
-    }
+    };
+
+    cpu.prototype.setpower = function(capa) {
+        this.maxpower = capa;
+        this.currentpower = capa;
+    };
+
+    cpu.prototype.subpowermap = function(mapfunc) {
+        this.subpowerfunc = mapfunc;
+    };
 
 })(this.cpu, this.mico);

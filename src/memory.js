@@ -31,5 +31,11 @@
         this.get = (index) => {
             return space[index];
         };
+
+        this.initzero = () => {
+            for(var i in space) {
+                space[i] = '00';
+            };
+        };
     };
 })(this);
