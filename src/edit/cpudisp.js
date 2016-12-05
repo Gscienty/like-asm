@@ -1,3 +1,10 @@
+var links = '';
+for(var i in level) {
+    links = links + '<a class="col-sm-3 choose-level btn btn-default" level="' + i + '">' + i + '</a>';
+};
+
+$('#exams').html(links);
+
 var transf10todisp16 = function(num) {
     var pc = mico.transf10to16(num, 4);
     var pcword = '';
