@@ -1,0 +1,16 @@
+*{
+    font-style: 'Microsoft Yahei';
+    font-size: 18px;
+}
+
+body {
+    background: #ccc
+}
+
+.edit-panel {
+    min-height: 200px;
+    min-width: 200px;
+    box-shadow: 0px 0px 15px #777;
+    background: #efefef;
+}
+

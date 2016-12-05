@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>Lonsm</title>
+        <link rel="stylesheet" href="src/css/bootstrap.min.css">
+        <style>
+            body{
+                background: #efefef;
+            };
+
+
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3" style="box-shadow:0px 0px 15px #777; margin-top:10px; padding:15px">
+                <span class="glyphicon glyphicon-open"></span>
+                <br /><br />
+                CPU register status
+                <hr />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span><b style="margin-right:15px">AX</b><span id="ax-state"></span></span><br />
+                        <span><b style="margin-right:15px">BX</b><span id="bx-state"></span></span><br />
+                        <span><b style="margin-right:15px">CX</b><span id="cx-state"></span></span><br />
+                        <span><b style="margin-right:15px">DX</b><span id="dx-state"></span></span><br />
+                    </div>
+                    <div class="col-sm-6">
+                        <span><b style="margin-right:15px">PSW</b><span id="psw-state"></span></span><br />
+                        <span><b style="margin-right:15px">PC</b><span id="pc-state"></span></span><br />
+                        <span><b style="margin-right:15px">SP</b><span id="sp-state"></span></span><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2" style="box-shadow:0px 0px 15px #777; margin-top:20px; padding:15px">
+                <table class="table" id="testtable"></table>
+            </div>
+        </div>
+        
+        <div class="alert alert-success" id="congratulation" style="margin-top:20px; text-align:center; display:none"><span style="font-weight:900;color:red;">ACCESS</span>
+            this test set, Congratulations!&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn">next</button>
+        </div>
+
+        
+        <div class="alert alert-info" id="failure" style="margin-top:20px; text-align:center; display:none"><span style="font-weight:900;color:red;">
+            Answer Error</span>, try again.&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn">reset</button>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2" style="box-shadow:0px 0px 15px #777; margin-top:20px; padding:15px; text-align:right">
+                <button class="btn btn-default" onclick="run_click(200)">run it!</button>
+                <br /><br />
+                <textarea id="edit" cols="30" rows="20" style="width:100%; border:none; background:#efefef"></textarea>
+            </div>
+        </div>
+
+
+        <script src="src/mico.js"></script>
+        <script src="src/memory.js"></script>
+        <script src="src/cpu.js"></script>
+        <script src="src/op/num.js"></script>
+        <script src="src/op/conc.js"></script>
+        <script src="src/op/stack.js"></script>
+        <script src="src/op/mov.js"></script>
+        <script src="src/cputest.js"></script>
+        <script src="src/comp.js"></script>
+        <script src="src/opcodemap.js"></script>
+        <script src="src/opexecmap.js"></script>
+        <script src="src/testset.js"></script>
+
+        <script src="src/js/jquery.min.js"></script>
+
+        <script src="src/edit/cpudisp.js"></script>
+    </body>
+</html>
+
+
