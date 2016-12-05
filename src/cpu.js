@@ -34,7 +34,7 @@
     };
 
     cpu.prototype.reset = function() {
-        for(var i = 0; i < 16; i++) { this.commonregister.push('00'); };
+        for(var i = 0; i < 16; i++) { this.commonregister[i] = '00'; };
         this.programstatusword = '00';
         this.stackpointer = 0;
         this.programcount = 0;

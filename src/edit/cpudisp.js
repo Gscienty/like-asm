@@ -62,7 +62,7 @@ function exec(cpuinstance, timeout) {
         tests.setuseranswer(document.getElementById('testtable'), cpuinstance);
         cpuinstance.reset();
         complie(cpuinstance.memory);
-        if(tests.setcurrenttestpair(cpuinstance)) { setTimeout(function() { exec(cpuinstance ,timeout); }, 1000); }
+        if(tests.setcurrenttestpair(cpuinstance)) { setTimeout(function() { exec(cpuinstance ,timeout); }, 200); }
         else { if(tests.isoffer()) { $('#congratulation').show(500); } else { $('#failure').show(500); } }
     };
     updatecpustatusdisplay(cpuinstance);
